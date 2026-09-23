@@ -1,19 +1,18 @@
 import { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Menu, X, Phone, CalendarPlus } from 'lucide-react'
 import Container from '../ui/Container'
 import BrandMark from '../ui/BrandMark'
 import { clinic } from '@/data/clinic'
 
-const navItems = [
-  { to: '/', label: 'Home' },
-  { to: '/about', label: 'About' },
-  { to: '/doctors', label: 'Doctors' },
-  { to: '/services', label: 'Services' },
-  { to: '/reviews', label: 'Reviews' },
-  { to: '/faq', label: 'FAQ' },
-  { to: '/contact', label: 'Contact' },
+const sectionLinks = [
+  { to: '/#services', label: 'Services' },
+  { to: '/#about', label: 'About' },
+  { to: '/#doctor', label: 'Doctor' },
+  { to: '/#reviews', label: 'Reviews' },
+  { to: '/#faq', label: 'FAQ' },
+  { to: '/#contact', label: 'Contact' },
 ]
 
 export default function Navbar() {
@@ -60,18 +59,14 @@ export default function Navbar() {
           </NavLink>
 
           <nav className="hidden lg:flex items-center gap-1">
-            {navItems.map((item) => (
-              <NavLink
+            {sectionLinks.map((item) => (
+              <Link
                 key={item.to}
                 to={item.to}
-                className={({ isActive }) =>
-                  `rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                    isActive ? 'text-teal-800 bg-teal-50' : 'text-ink-600 hover:text-teal-800 hover:bg-ink-50'
-                  }`
-                }
+                className="rounded-full px-4 py-2 text-sm font-medium text-ink-600 transition-colors hover:bg-ink-50 hover:text-teal-800"
               >
                 {item.label}
-              </NavLink>
+              </Link>
             ))}
           </nav>
 
@@ -115,19 +110,15 @@ export default function Navbar() {
             className="lg:hidden overflow-hidden border-t border-ink-100 bg-[#fbfaf7]"
           >
             <Container className="py-4 flex flex-col gap-1">
-              {navItems.map((item) => (
-                <NavLink
+              {sectionLinks.map((item) => (
+                <Link
                   key={item.to}
                   to={item.to}
                   onClick={() => setOpen(false)}
-                  className={({ isActive }) =>
-                    `rounded-xl px-4 py-3 text-[0.95rem] font-medium ${
-                      isActive ? 'text-teal-800 bg-teal-50' : 'text-ink-700 hover:bg-ink-50'
-                    }`
-                  }
+                  className="rounded-xl px-4 py-3 text-[0.95rem] font-medium text-ink-700 hover:bg-ink-50"
                 >
                   {item.label}
-                </NavLink>
+                </Link>
               ))}
               <div className="mt-3 flex flex-col gap-2.5 px-1">
                 <a

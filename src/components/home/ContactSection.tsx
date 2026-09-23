@@ -1,35 +1,26 @@
 import { motion } from 'framer-motion'
 import { MapPin, Phone, Printer, Clock, CreditCard, Accessibility, CalendarCheck, ClipboardList } from 'lucide-react'
-import PageTransition from '../components/ui/PageTransition'
-import PageHeader from '../components/shared/PageHeader'
-import Container from '../components/ui/Container'
-import Button from '../components/ui/Button'
-import Seo from '../components/shared/Seo'
+import Container from '../ui/Container'
+import SectionHeading from '../ui/SectionHeading'
+import Button from '../ui/Button'
 import { clinic } from '@/data/clinic'
 import { buildMapEmbedSrc } from '@/lib/maps'
 import exteriorImg from '@/assets/clinic-exterior.jpg'
-import corridorImg from '@/assets/clinic-corridor-dark.jpg'
 
-export default function Contact() {
+export default function ContactSection() {
   const mapSrc = buildMapEmbedSrc(clinic.mapQuery)
   const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(clinic.mapQuery)}`
 
   return (
-    <PageTransition>
-      <Seo
-        title="Contact & Location | Yin Yin Win Medical PC"
-        description="Visit Yin Yin Win Medical PC at 128 Mott St Ste 601, New York, NY 10013. Open 7 days a week, 9:00 AM–5:30 PM. Wheelchair accessible, credit & debit cards accepted."
-      />
-      <PageHeader
-        eyebrow="Contact & Location"
-        title="Get in touch"
-        description="Call, visit, or book online — we're here seven days a week to help."
-        image={corridorImg}
-      />
+    <section id="contact" className="scroll-mt-24 bg-sand-50 py-20 sm:py-28">
+      <Container>
+        <SectionHeading
+          eyebrow="Contact & Location"
+          title="Get in touch"
+          description="Call, visit, or book online — we're here seven days a week to help."
+        />
 
-      <section className="py-20 sm:py-28">
-        <Container className="grid grid-cols-1 gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-          {/* Info column */}
+        <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-[0.9fr_1.1fr]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -110,7 +101,6 @@ export default function Contact() {
             </Button>
           </motion.div>
 
-          {/* Map + amenities */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -189,8 +179,8 @@ export default function Contact() {
               </ul>
             </div>
           </motion.div>
-        </Container>
-      </section>
-    </PageTransition>
+        </div>
+      </Container>
+    </section>
   )
 }

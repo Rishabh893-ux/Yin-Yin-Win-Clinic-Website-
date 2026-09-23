@@ -2,11 +2,13 @@ import PageTransition from '../components/ui/PageTransition'
 import Seo from '../components/shared/Seo'
 import Hero from '../components/home/Hero'
 import TrustBar from '../components/home/TrustBar'
-import ServicesPreview from '../components/home/ServicesPreview'
+import ServicesSection from '../components/home/ServicesSection'
 import Benefits from '../components/home/Benefits'
-import DoctorPreview from '../components/home/DoctorPreview'
-import ReviewsPreview from '../components/home/ReviewsPreview'
-import LocationPreview from '../components/home/LocationPreview'
+import AboutSection from '../components/home/AboutSection'
+import DoctorSection from '../components/home/DoctorSection'
+import ReviewsSection from '../components/home/ReviewsSection'
+import FaqSection from '../components/home/FaqSection'
+import ContactSection from '../components/home/ContactSection'
 import FinalCTA from '../components/home/FinalCTA'
 
 export default function Home() {
@@ -18,11 +20,13 @@ export default function Home() {
       />
       <Hero />
       <TrustBar />
-      <ServicesPreview />
+      <ServicesSection />
       <Benefits />
-      <DoctorPreview />
-      <ReviewsPreview />
-      <LocationPreview />
+      <AboutSection />
+      <DoctorSection />
+      <ReviewsSection />
+      <FaqSection />
+      <ContactSection />
       <FinalCTA />
     </PageTransition>
   )

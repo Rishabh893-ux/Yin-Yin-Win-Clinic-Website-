@@ -1,16 +1,11 @@
 import { motion } from 'framer-motion'
 import { HeartHandshake, Users, Clock3, Languages, ArrowRight } from 'lucide-react'
-import PageTransition from '../components/ui/PageTransition'
-import PageHeader from '../components/shared/PageHeader'
-import Container from '../components/ui/Container'
-import SectionHeading from '../components/ui/SectionHeading'
-import Button from '../components/ui/Button'
-import FinalCTA from '../components/home/FinalCTA'
-import Seo from '../components/shared/Seo'
-import CountUp from '../components/shared/CountUp'
+import Container from '../ui/Container'
+import SectionHeading from '../ui/SectionHeading'
+import Button from '../ui/Button'
+import CountUp from '../shared/CountUp'
 import { reviewThemes } from '@/data/clinic'
 import waitingRoomImg from '@/assets/waiting-room-reception.jpg'
-import corridorImg from '@/assets/clinic-corridor-dark.jpg'
 
 const practiceThemeLabels = ['Friendly staff', 'Efficient staff', 'Easy scheduling', 'Family doctor']
 const practiceThemes = reviewThemes.filter((t) => practiceThemeLabels.includes(t.label))
@@ -38,22 +33,17 @@ const values = [
   },
 ]
 
-export default function About() {
+export default function AboutSection() {
   return (
-    <PageTransition>
-      <Seo
-        title="About | Yin Yin Win Medical PC"
-        description="A neighborhood internal medicine practice on Mott Street in Chinatown, NYC — 4.8-star rated with 185+ Google reviews and four NYC hospital affiliations."
-      />
-      <PageHeader
-        eyebrow="About the Practice"
-        title="A neighborhood practice, built on trust"
-        description="Yin Yin Win Medical PC has been a fixture of Chinatown's Mott Street for years — a place where patients are known by name, not just chart number."
-        image={corridorImg}
-      />
+    <section id="about" className="scroll-mt-24 bg-sand-50 py-20 sm:py-28">
+      <Container>
+        <SectionHeading
+          eyebrow="About the Practice"
+          title="A neighborhood practice, built on trust"
+          description="Yin Yin Win Medical PC has been a fixture of Chinatown's Mott Street for years — a place where patients are known by name, not just chart number."
+        />
 
-      <section className="py-20 sm:py-28">
-        <Container className="grid grid-cols-1 gap-14 lg:grid-cols-[1fr_1fr] lg:gap-16">
+        <div className="mt-12 grid grid-cols-1 gap-14 lg:grid-cols-[1fr_1fr] lg:gap-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -61,20 +51,15 @@ export default function About() {
             transition={{ duration: 0.6 }}
           >
             <p className="eyebrow">Our Story</p>
-            <h2 className="mt-4 text-balance text-3xl font-medium leading-[1.2] text-ink-900 sm:text-4xl">
+            <h3 className="mt-4 text-balance font-display text-2xl font-medium leading-[1.2] text-ink-900 sm:text-3xl">
               Internal medicine, practiced the way it should be
-            </h2>
+            </h3>
             <div className="mt-6 space-y-4 text-[1.02rem] leading-relaxed text-ink-500">
               <p>
                 Located on the first floor of the Mietz Building at 128 Mott Street, the
                 practice was founded on a simple idea: that good primary care starts with
                 genuinely listening to patients. That approach has earned the trust of the
                 community, reflected in a 4.8-star rating across 185 Google reviews.
-              </p>
-              <p>
-                Patients consistently describe an experienced doctor, a friendly staff, and
-                explanations that are easy to understand — the foundation of care that keeps
-                people coming back, visit after visit, year after year.
               </p>
               <p>
                 As a practice affiliated with several major NYC hospital systems, we're able
@@ -97,9 +82,11 @@ export default function About() {
               ))}
             </div>
 
-            <Button to="/doctors" variant="outline" className="mt-7" icon={<ArrowRight size={16} />}>
-              Meet Dr. Win
-            </Button>
+            <a href="#doctor" className="inline-block">
+              <Button variant="outline" className="mt-7" icon={<ArrowRight size={16} />}>
+                Meet Dr. Win
+              </Button>
+            </a>
           </motion.div>
 
           <motion.div
@@ -130,37 +117,31 @@ export default function About() {
               </div>
             </div>
           </motion.div>
-        </Container>
-      </section>
+        </div>
 
-      <section className="pb-4">
-        <Container>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="grid grid-cols-1 items-center gap-8 overflow-hidden rounded-[2rem] border border-ink-100 bg-white p-2 shadow-sm sm:grid-cols-[1fr_1.3fr] sm:p-3"
-          >
-            <img
-              src={waitingRoomImg}
-              alt="A calm, plant-filled waiting area"
-              className="h-56 w-full rounded-[1.5rem] object-cover sm:h-72"
-            />
-            <div className="px-4 pb-4 sm:pl-0 sm:pr-8">
-              <p className="eyebrow">The Space</p>
-              <p className="mt-3 text-[1.02rem] leading-relaxed text-ink-500">
-                A calm, unhurried atmosphere is part of the care — comfortable seating,
-                natural light, and a pace that never feels rushed, from the waiting room
-                to the exam room.
-              </p>
-            </div>
-          </motion.div>
-        </Container>
-      </section>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-8 grid grid-cols-1 items-center gap-8 overflow-hidden rounded-[2rem] border border-ink-100 bg-white p-2 shadow-sm sm:grid-cols-[1fr_1.3fr] sm:p-3"
+        >
+          <img
+            src={waitingRoomImg}
+            alt="A calm, plant-filled waiting area"
+            className="h-56 w-full rounded-[1.5rem] object-cover sm:h-72"
+          />
+          <div className="px-4 pb-4 sm:pl-0 sm:pr-8">
+            <p className="eyebrow">The Space</p>
+            <p className="mt-3 text-[1.02rem] leading-relaxed text-ink-500">
+              A calm, unhurried atmosphere is part of the care — comfortable seating,
+              natural light, and a pace that never feels rushed, from the waiting room
+              to the exam room.
+            </p>
+          </div>
+        </motion.div>
 
-      <section className="bg-sand-50 py-20 sm:py-28">
-        <Container>
+        <div className="mt-16">
           <SectionHeading eyebrow="What We Value" title="Principles behind every visit" align="center" />
           <div className="mx-auto mt-12 grid max-w-4xl grid-cols-1 gap-5 sm:grid-cols-2">
             {values.map((v, i) => (
@@ -182,10 +163,8 @@ export default function About() {
               </motion.div>
             ))}
           </div>
-        </Container>
-      </section>
-
-      <FinalCTA />
-    </PageTransition>
+        </div>
+      </Container>
+    </section>
   )
 }

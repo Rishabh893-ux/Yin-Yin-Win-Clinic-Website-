@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { MapPin, Phone, Clock, Printer } from 'lucide-react'
 import Container from '../ui/Container'
 import BrandMark from '../ui/BrandMark'
@@ -8,18 +8,18 @@ const columns = [
   {
     title: 'Practice',
     links: [
-      { to: '/about', label: 'About Us' },
-      { to: '/doctors', label: 'Our Doctor' },
-      { to: '/services', label: 'Services' },
-      { to: '/reviews', label: 'Patient Reviews' },
+      { to: '/#about', label: 'About Us' },
+      { to: '/#doctor', label: 'Our Doctor' },
+      { to: '/#services', label: 'Services' },
+      { to: '/#reviews', label: 'Patient Reviews' },
     ],
   },
   {
     title: 'Visit',
     links: [
       { to: '/appointments', label: 'Book an Appointment' },
-      { to: '/contact', label: 'Contact & Location' },
-      { to: '/faq', label: 'FAQ' },
+      { to: '/#contact', label: 'Contact & Location' },
+      { to: '/#faq', label: 'FAQ' },
     ],
   },
 ]
@@ -51,9 +51,9 @@ export default function Footer() {
               <ul className="mt-5 space-y-3">
                 {col.links.map((link) => (
                   <li key={link.to}>
-                    <NavLink to={link.to} className="text-sm text-ink-300 hover:text-teal-300 transition-colors">
+                    <Link to={link.to} className="text-sm text-ink-300 hover:text-teal-300 transition-colors">
                       {link.label}
-                    </NavLink>
+                    </Link>
                   </li>
                 ))}
               </ul>

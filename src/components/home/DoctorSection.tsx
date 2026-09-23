@@ -1,14 +1,11 @@
 import { motion } from 'framer-motion'
 import { CalendarPlus } from 'lucide-react'
-import PageTransition from '../components/ui/PageTransition'
-import PageHeader from '../components/shared/PageHeader'
-import Container from '../components/ui/Container'
-import Button from '../components/ui/Button'
-import Seo from '../components/shared/Seo'
-import DoctorTabs from '../components/shared/DoctorTabs'
-import DoctorAvatar from '../components/shared/DoctorAvatar'
+import Container from '../ui/Container'
+import SectionHeading from '../ui/SectionHeading'
+import Button from '../ui/Button'
+import DoctorTabs from '../shared/DoctorTabs'
+import DoctorAvatar from '../shared/DoctorAvatar'
 import { doctor, reviewThemes } from '@/data/clinic'
-import corridorImg from '@/assets/clinic-corridor-dark.jpg'
 
 const doctorThemeLabels = [
   'Experienced doctor',
@@ -19,22 +16,13 @@ const doctorThemeLabels = [
 ]
 const doctorThemes = reviewThemes.filter((t) => doctorThemeLabels.includes(t.label))
 
-export default function Doctors() {
+export default function DoctorSection() {
   return (
-    <PageTransition>
-      <Seo
-        title="Meet Dr. Yin Yin Win | Yin Yin Win Medical PC"
-        description="Dr. Yin Yin Win, M.D., leads internal medicine and primary care at Yin Yin Win Medical PC, affiliated with NewYork-Presbyterian, Mount Sinai, and Maimonides Medical Center."
-      />
-      <PageHeader
-        eyebrow="Our Physician"
-        title="Meet Dr. Yin Yin Win"
-        description="Leading internal medicine and primary care at the practice, with a reputation for thorough, patient-centered visits."
-        image={corridorImg}
-      />
+    <section id="doctor" className="scroll-mt-24 py-20 sm:py-28">
+      <Container>
+        <SectionHeading eyebrow="Our Physician" title="Meet Dr. Yin Yin Win" />
 
-      <section className="py-20 sm:py-28">
-        <Container className="grid grid-cols-1 gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+        <div className="mt-12 grid grid-cols-1 gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -58,9 +46,9 @@ export default function Doctors() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h2 className="text-balance font-display text-3xl font-medium text-ink-900 sm:text-4xl">
+            <h3 className="text-balance font-display text-3xl font-medium text-ink-900 sm:text-4xl">
               {doctor.name}
-            </h2>
+            </h3>
             <p className="mt-2 text-lg font-medium text-teal-700">{doctor.title}</p>
 
             <p className="mt-6 text-[1.05rem] leading-relaxed text-ink-500">{doctor.bio}</p>
@@ -90,8 +78,8 @@ export default function Doctors() {
               Book with Dr. Win
             </Button>
           </motion.div>
-        </Container>
-      </section>
-    </PageTransition>
+        </div>
+      </Container>
+    </section>
   )
 }
