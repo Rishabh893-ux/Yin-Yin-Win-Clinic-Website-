@@ -1,16 +1,16 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Languages, Stethoscope, Building2, Info } from 'lucide-react'
+import { Building2, Info } from 'lucide-react'
 import { doctor } from '@/data/clinic'
 
-const tabs = ['Focus & Languages', 'Hospital Affiliations', 'Credentials'] as const
+const tabs = ['Hospital Affiliations', 'Credentials'] as const
 type Tab = (typeof tabs)[number]
 
 export default function DoctorTabs() {
   const [active, setActive] = useState<Tab>(tabs[0])
 
   return (
-    <div className="mt-8 rounded-2xl border border-ink-100 bg-white">
+    <div className="rounded-2xl border border-ink-100 bg-white">
       <div className="flex overflow-x-auto border-b border-ink-100 px-2" role="tablist" aria-label="Doctor details">
         {tabs.map((tab) => (
           <button
@@ -37,32 +37,6 @@ export default function DoctorTabs() {
 
       <div className="relative min-h-[9rem] overflow-hidden p-6">
         <AnimatePresence mode="wait">
-          {active === 'Focus & Languages' && (
-            <motion.div
-              key="focus"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.25 }}
-              className="grid grid-cols-1 gap-5 sm:grid-cols-2"
-            >
-              <div>
-                <div className="flex items-center gap-2.5 text-ink-900">
-                  <Stethoscope size={18} className="text-teal-700" />
-                  <h3 className="font-medium">Focus Area</h3>
-                </div>
-                <p className="mt-2 text-sm text-ink-500">Internal medicine &amp; primary care</p>
-              </div>
-              <div>
-                <div className="flex items-center gap-2.5 text-ink-900">
-                  <Languages size={18} className="text-teal-700" />
-                  <h3 className="font-medium">Languages</h3>
-                </div>
-                <p className="mt-2 text-sm text-ink-500">{doctor.languages.join(' · ')}</p>
-              </div>
-            </motion.div>
-          )}
-
           {active === 'Hospital Affiliations' && (
             <motion.div
               key="affiliations"
