@@ -4,24 +4,18 @@
  * can never be mistaken for an actual photo of a real person. Swap this
  * component out for a real <img> once an authorized photo of Dr. Win exists.
  */
-export default function DoctorAvatar({ size = 160, className = '' }: { size?: number; className?: string }) {
+export default function DoctorAvatar({ className = '' }: { className?: string }) {
   return (
     <div
-      className={`relative flex shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-teal-100 via-sand-100 to-teal-50 shadow-card ${className}`}
-      style={{ width: size, height: size }}
+      className={`relative flex h-full w-full items-center justify-center overflow-hidden rounded-[2rem] bg-gradient-to-br from-teal-100 via-sand-100 to-teal-50 ${className}`}
     >
-      <span className="absolute inset-0 rounded-full border border-ink-100" aria-hidden="true" />
-      <span className="absolute inset-[7%] rounded-full border border-teal-700/20" aria-hidden="true" />
-
-      <svg viewBox="0 0 200 260" className="relative h-[68%] w-auto text-teal-800" fill="none" aria-hidden="true">
-        {/* soft depth fill behind the figure */}
-        <circle cx="100" cy="62" r="44" fill="currentColor" opacity="0.07" />
-        <path
-          d="M24 244c0-48 34-74 76-74s76 26 76 74"
-          fill="currentColor"
-          opacity="0.05"
-        />
-
+      <span className="pointer-events-none absolute inset-0 bg-noise opacity-[0.04]" aria-hidden="true" />
+      <svg
+        viewBox="0 0 200 260"
+        className="h-[78%] w-auto text-teal-700/80"
+        fill="none"
+        aria-hidden="true"
+      >
         {/* head */}
         <circle cx="100" cy="62" r="40" stroke="currentColor" strokeWidth="2" />
         {/* shoulders / coat */}
