@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink, Link, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Menu, X, Phone, CalendarPlus } from 'lucide-react'
 import Container from '../ui/Container'
@@ -7,17 +7,19 @@ import BrandMark from '../ui/BrandMark'
 import { clinic } from '@/data/clinic'
 
 const sectionLinks = [
-  { to: '/#services', label: 'Services' },
-  { to: '/#about', label: 'About' },
-  { to: '/#doctor', label: 'Doctor' },
-  { to: '/#reviews', label: 'Reviews' },
-  { to: '/#faq', label: 'FAQ' },
-  { to: '/#contact', label: 'Contact' },
+  { id: 'services', to: '/#services', label: 'Services' },
+  { id: 'about', to: '/#about', label: 'About' },
+  { id: 'doctor', to: '/#doctor', label: 'Doctor' },
+  { id: 'reviews', to: '/#reviews', label: 'Reviews' },
+  { id: 'faq', to: '/#faq', label: 'FAQ' },
+  { id: 'contact', to: '/#contact', label: 'Contact' },
 ]
 
 export default function Navbar() {
+  const { pathname } = useLocation()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState<string | null>(null)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12)
@@ -25,6 +27,29 @@ export default function Navbar() {
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  useEffect(() => {
+    if (pathname !== '/') {
+      setActiveSection(null)
+      return
+    }
+    const elements = sectionLinks
+      .map((item) => document.getElementById(item.id))
+      .filter((el): el is HTMLElement => el !== null)
+    if (elements.length === 0) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting)
+        if (visible.length === 0) return
+        const topMost = visible.reduce((a, b) => (a.boundingClientRect.top < b.boundingClientRect.top ? a : b))
+        setActiveSection(topMost.target.id)
+      },
+      { rootMargin: '-96px 0px -60% 0px', threshold: 0 },
+    )
+    elements.forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [pathname])
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
@@ -63,7 +88,11 @@ export default function Navbar() {
               <Link
                 key={item.to}
                 to={item.to}
-                className="rounded-full px-4 py-2 text-sm font-medium text-ink-600 transition-colors hover:bg-ink-50 hover:text-teal-800"
+                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                  activeSection === item.id
+                    ? 'bg-teal-50 text-teal-800'
+                    : 'text-ink-600 hover:bg-ink-50 hover:text-teal-800'
+                }`}
               >
                 {item.label}
               </Link>
@@ -115,7 +144,9 @@ export default function Navbar() {
                   key={item.to}
                   to={item.to}
                   onClick={() => setOpen(false)}
-                  className="rounded-xl px-4 py-3 text-[0.95rem] font-medium text-ink-700 hover:bg-ink-50"
+                  className={`rounded-xl px-4 py-3 text-[0.95rem] font-medium ${
+                    activeSection === item.id ? 'bg-teal-50 text-teal-800' : 'text-ink-700 hover:bg-ink-50'
+                  }`}
                 >
                   {item.label}
                 </Link>
